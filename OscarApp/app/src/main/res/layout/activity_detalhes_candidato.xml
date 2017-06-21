@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_detalhes_candidato"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.amanda.oscarapp.DetalhesCandidato">
+
+    <ImageView
+        android:layout_height="match_parent"
+        app:srcCompat="@mipmap/logoscar"
+        android:id="@+id/imageViewDetalhesCandidato"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="260dp" />
+
+    <Button
+        android:text="Votar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnVotar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="76dp"
+        android:textSize="17sp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/generoCandidatoDetalhes"
+        android:layout_above="@+id/btnVotar"
+        android:layout_alignLeft="@+id/nomeCandidatoDetalhes"
+        android:layout_alignStart="@+id/nomeCandidatoDetalhes"
+        android:layout_marginBottom="26dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp"
+        android:id="@+id/nomeCandidatoDetalhes"
+        android:layout_above="@+id/generoCandidatoDetalhes"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"
+        android:textSize="20sp" />
+</RelativeLayout>

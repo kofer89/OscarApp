@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_detalhes_diretor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.amanda.oscarapp.DetalhesDiretor">
+
+
+    <Button
+        android:text="Votar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnVotar"
+        android:textSize="17sp"
+        android:layout_below="@+id/nomeDiretorDetalhes"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="103dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nomeDiretorDetalhes"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/btnVotar"
+        android:layout_alignEnd="@+id/btnVotar"
+        android:layout_marginTop="63dp" />
+</RelativeLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_confirmar_voto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.amanda.oscarapp.ConfirmarVoto">
+
+    <TextView
+        android:text="Nome Filme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewNomeFilme"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/imageViewFilme"
+        android:layout_alignEnd="@+id/imageViewFilme"
+        android:layout_marginRight="11dp"
+        android:layout_marginEnd="11dp" />
+
+    <TextView
+        android:text="Gênero Filme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewNomeFilme"
+        android:layout_alignLeft="@+id/textViewNomeFilme"
+        android:layout_alignStart="@+id/textViewNomeFilme"
+        android:layout_marginTop="23dp"
+        android:id="@+id/textViewGeneroFilme" />
+
+    <TextView
+        android:text="Gênero Diretor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewGeneroDiretor"
+        android:layout_alignBaseline="@+id/textViewGeneroFilme"
+        android:layout_alignBottom="@+id/textViewGeneroFilme"
+        android:layout_alignLeft="@+id/textViewNomeDiretor"
+        android:layout_alignStart="@+id/textViewNomeDiretor" />
+
+    <TextView
+        android:text="Nome Diretor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewNomeDiretor"
+        android:layout_marginRight="54dp"
+        android:layout_marginEnd="54dp"
+        android:layout_above="@+id/textViewGeneroFilme"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        app:srcCompat="@android:drawable/alert_dark_frame"
+        android:layout_marginTop="43dp"
+        android:id="@+id/imageViewFilme"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:maxWidth="150dp" />
+
+    <ImageView
+
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        app:srcCompat="@android:drawable/alert_dark_frame"
+        android:id="@+id/imageViewDiretor"
+        android:layout_marginRight="13dp"
+        android:layout_marginEnd="13dp"
+        android:maxWidth="150dp"
+        android:layout_alignTop="@+id/imageViewFilme"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Alterar Voto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:id="@+id/btnAlterarVoto"
+        android:layout_below="@+id/textViewGeneroFilme"
+        android:layout_alignRight="@+id/textViewGeneroFilme"
+        android:layout_alignEnd="@+id/textViewGeneroFilme" />
+
+    <Button
+        android:text="Confirmar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnConfirmarVoto"
+        android:layout_alignBottom="@+id/btnAlterarVoto"
+        android:layout_alignLeft="@+id/imageViewDiretor"
+        android:layout_alignStart="@+id/imageViewDiretor" />
+</RelativeLayout>

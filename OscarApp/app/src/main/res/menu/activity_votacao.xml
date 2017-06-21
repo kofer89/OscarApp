@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/votarFilme"
+        android:title="Votar Filme"
+        android:orderInCategory="1" android:alphabeticShortcut="e"
+        android:titleCondensed="Votar Filme"
+        android:icon="@android:drawable/ic_menu_edit"></item>
+    <item android:id="@+id/votarDiretor"
+        android:title="Votar Diretor"
+        android:orderInCategory="2" android:alphabeticShortcut="d"
+        android:titleCondensed="Votar Diretor"
+        android:icon="@android:drawable/ic_delete"></item>
+    <item android:id="@+id/confirmarVoto"
+        android:title="Confirmar Voto"
+        android:orderInCategory="2" android:alphabeticShortcut="d"
+        android:titleCondensed="Votar Diretor"
+        android:icon="@android:drawable/ic_delete"></item>
+</menu>

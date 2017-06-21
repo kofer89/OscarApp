@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_votacao"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="64dp"
+    android:paddingRight="64dp"
+    android:paddingTop="16dp"
+    tools:context="com.example.amanda.oscarapp.TelaInicial">
+
+    <TextView
+        android:text="Vote pelo menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="95dp"
+        android:id="@+id/tvBoasVindas" />
+
+    <Button
+        android:text="Confirmar Voto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBoasVindas"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="134dp"
+        android:id="@+id/btnConfirmaVoto"
+        android:onClick="confirmaVoto"
+        android:visibility="invisible" />
+</RelativeLayout>
