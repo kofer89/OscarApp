@@ -84,7 +84,7 @@ public class ConfirmarVoto extends AppCompatActivity  {
                 if (usuario.getVotou()!=1){
                     DbConnector db = new DbConnector(ConfirmarVoto.this);
                     db.open();
-                    db.confirmarVoto(usuario.getUsuario());
+                    db.confirmarVoto(usuario.getUsuario(), filme.getNome(), diretor.getNome());
                     Toast.makeText(ConfirmarVoto.this,"Voto efetuado com sucesso.",Toast.LENGTH_SHORT).show();
                     usuario.setVotou(1);
                 }

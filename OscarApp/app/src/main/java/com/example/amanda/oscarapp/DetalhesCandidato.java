@@ -19,6 +19,7 @@ public class DetalhesCandidato extends AppCompatActivity {
     private TextView nomeDetalhes;
     private TextView generoDetalhes;
     private Candidato candidato, filme;
+    private Diretor diretor;
     private Button btnVotar;
     private Intent intent;
     private String tipoVotacao;
@@ -39,6 +40,7 @@ public class DetalhesCandidato extends AppCompatActivity {
         if (intent != null) {
             Bundle bundle = intent.getExtras();
             if (bundle != null) {
+                diretor = (Diretor) intent.getSerializableExtra("diretor");
                 tipoVotacao = intent.getStringExtra("tipoVotacao");
                 candidato = (Candidato) intent.getSerializableExtra("objetoCandidato");
                 usuario = (Usuario) intent.getSerializableExtra("usuario");
@@ -61,6 +63,7 @@ public class DetalhesCandidato extends AppCompatActivity {
                 intent.putExtra(tipoVotacao, candidato);
                 intent.putExtra("usuario", usuario);
                 intent.putExtra("filme", filme);
+                intent.putExtra("diretor", diretor);
                 intent.putExtra("tipoVotacao", tipoVotacao);
                 startActivity(intent);
             }

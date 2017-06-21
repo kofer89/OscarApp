@@ -28,6 +28,7 @@ public class VotacaoFilme extends AppCompatActivity {
     private ArrayList<Candidato> listaCandidato = new ArrayList<>();
     private CandidatoAdapter candidatoAdapter;
     private Candidato candidato, filme;
+    private Diretor diretor;
     private Usuario usuario;
     private Intent intent;
 
@@ -40,6 +41,7 @@ public class VotacaoFilme extends AppCompatActivity {
         intent = getIntent();
         if (intent != null) {
             Bundle bundle = intent.getExtras();
+            diretor = (Diretor) bundle.getSerializable("diretor");
             if (bundle != null) {
                 usuario = (Usuario) bundle.getSerializable("usuario");
                 if (bundle.getSerializable("filme") != null)
@@ -62,6 +64,7 @@ public class VotacaoFilme extends AppCompatActivity {
 
                 intent.putExtra("objetoCandidato", candidato);
                 intent.putExtra("filme", filme);
+                intent.putExtra("diretor", diretor);
                 intent.putExtra("usuario", usuario);
                 intent.putExtra("tipoVotacao",tipoVotacao);
                 startActivity(intent);

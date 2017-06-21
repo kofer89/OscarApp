@@ -34,9 +34,9 @@ public class TelaInicial extends AppCompatActivity {
 
                 usuario = (Usuario) bundle.getSerializable("usuario");
                 if (bundle.getSerializable("filme") != null)
-                    filme = (Candidato) bundle.getSerializable("filme");
+                    this.filme = (Candidato) bundle.getSerializable("filme");
                 if (bundle.getSerializable("diretor") != null)
-                    diretor = (Diretor) bundle.getSerializable("diretor");
+                    this.diretor = (Diretor) bundle.getSerializable("diretor");
 
                 if (usuario !=null){
                     tvBoasVindas.setText("Bem-vindo(a) "+ usuario.getNome());
@@ -66,7 +66,7 @@ public class TelaInicial extends AppCompatActivity {
 
             if (item.getTitle().equals("Confirmar Voto")){
 
-                if (filme==null || diretor == null){
+                if (filme == null || diretor == null){
                     Toast.makeText(this,"É necessário votar para Filme e Diretor.",Toast.LENGTH_LONG).show();
                 }
                 else {
@@ -81,6 +81,7 @@ public class TelaInicial extends AppCompatActivity {
                 intent = new Intent(TelaInicial.this, VotacaoFilme.class);
                 intent.putExtra("usuario",usuario);
                 intent.putExtra("filme",filme);
+                intent.putExtra("diretor", this.diretor);
                 intent.putExtra("menuClicado",item.getTitle());
                 startActivity(intent);
             }
@@ -88,6 +89,7 @@ public class TelaInicial extends AppCompatActivity {
                 intent = new Intent(TelaInicial.this, VotacaoDiretor.class);
                 intent.putExtra("usuario",usuario);
                 intent.putExtra("diretor",diretor);
+                intent.putExtra("filme", this.filme);
                 intent.putExtra("menuClicado",item.getTitle());
                 startActivity(intent);
             }
@@ -99,7 +101,7 @@ public class TelaInicial extends AppCompatActivity {
         if (usuario.getVotou()!=1){
             DbConnector db = new DbConnector(this);
             db.open();
-            db.confirmarVoto(usuario.getUsuario());
+            db.confirmarVoto(usuario.getUsuario(), filme.getNome(), diretor.getNome());
             Toast.makeText(TelaInicial.this,"Voto efetuado com sucesso.",Toast.LENGTH_SHORT).show();
             usuario.setVotou(1);
         }

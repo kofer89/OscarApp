@@ -53,12 +53,14 @@ public class DbConnector {
     } //fim insertContact
 
     //edita contato
-    public void confirmarVoto(int usuario){
+    public void confirmarVoto(int usuario, String filme, String diretor){
         ContentValues editContact = new ContentValues();
         editContact.put("votou",1);
+        editContact.put("voto_filme", filme);
+        editContact.put("voto_diretor", diretor);
 
         open();
-        database.update("usuario",editContact,"usuário=" + usuario,null);
+        database.update("usuario",editContact,"usuario= " + usuario,null);
         close();
     } //fim updateContact
 
@@ -100,11 +102,14 @@ public class DbConnector {
             String createQuery = "CREATE TABLE " + "Usuario"
                     + "(usuario integer primary key,"
                     + "nome TEXT,"
-                    + "senha TEXT, votou integer);";
+                    + "senha TEXT,"
+                    + "voto_filme TEXT,"
+                    + "voto_diretor TEXT,"
+                    + "votou integer);";
             db.execSQL(createQuery);
-            db.execSQL("insert into usuario values (111,'Amanda','s',0)");
-            db.execSQL("insert into usuario values (222,'Flavio','s',0)");
-            db.execSQL("insert into usuario values (333,'Fernando','s',0)");
+            db.execSQL("insert into usuario values (111,'Amanda','s',null,null,0)");
+            db.execSQL("insert into usuario values (222,'Flavio','s',null,null,0)");
+            db.execSQL("insert into usuario values (333,'Fernando','s',null,null,0)");
 
 
         } // fim onCreate
