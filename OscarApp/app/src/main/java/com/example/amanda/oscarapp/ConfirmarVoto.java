@@ -18,7 +18,8 @@ import java.io.IOException;
 public class ConfirmarVoto extends AppCompatActivity  {
 
     private Intent intent;
-    private Candidato filme, diretor;
+    private Candidato filme;
+    private Diretor diretor;
     private Usuario usuario;
     private TextView tvNomeFilme,tvGeneroFilme, tvNomeDiretor,tvGeneroDiretor;
     private ImageView fotoFilme,fotoDiretor;
@@ -35,7 +36,6 @@ public class ConfirmarVoto extends AppCompatActivity  {
         tvGeneroDiretor = (TextView) findViewById(R.id.textViewGeneroDiretor);
 
         fotoFilme = (ImageView) findViewById(R.id.imageViewFilme);
-        fotoDiretor = (ImageView) findViewById(R.id.imageViewDiretor);
 
         btnAlterarVoto = (Button) findViewById(R.id.btnAlterarVoto);
         btnConfirmarVoto = (Button) findViewById(R.id.btnConfirmarVoto);
@@ -46,22 +46,17 @@ public class ConfirmarVoto extends AppCompatActivity  {
             if (bundle != null) {
                 usuario = (Usuario) bundle.getSerializable("usuario");
                 filme = (Candidato) bundle.getSerializable("filme");
-                diretor = (Candidato) bundle.getSerializable("diretor");
+                diretor = (Diretor) bundle.getSerializable("diretor");
             }
         }
 
         tvNomeFilme.setText(filme.getNome());
         tvNomeDiretor.setText(diretor.getNome());
         tvGeneroFilme.setText(filme.getGenero());
-        tvGeneroDiretor.setText(diretor.getGenero());
+        tvGeneroDiretor.setText(diretor.getNome());
 
         try {
             fotoFilme.setImageBitmap(new AuxiliarImg().baixarImagem(filme.getLinkFoto()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            fotoDiretor.setImageBitmap(new AuxiliarImg().baixarImagem(diretor.getLinkFoto()));
         } catch (IOException e) {
             e.printStackTrace();
         }

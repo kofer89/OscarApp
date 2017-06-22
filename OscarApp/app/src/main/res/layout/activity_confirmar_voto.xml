@@ -75,17 +75,15 @@
 
     <Button
         android:text="Alterar Voto"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:id="@+id/btnAlterarVoto"
-        android:layout_below="@+id/textViewGeneroFilme"
-        android:layout_alignRight="@+id/textViewGeneroFilme"
-        android:layout_alignEnd="@+id/textViewGeneroFilme" />
+        android:layout_below="@+id/textViewGeneroFilme" />
 
     <Button
         android:text="Confirmar"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/btnConfirmarVoto"
         android:layout_alignBottom="@+id/btnAlterarVoto"

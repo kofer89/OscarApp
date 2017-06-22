@@ -56,8 +56,8 @@ public class DbConnector {
     public void confirmarVoto(int usuario, String filme, String diretor){
         ContentValues editContact = new ContentValues();
         editContact.put("votou",1);
-        editContact.put("voto_filme", filme);
-        editContact.put("voto_diretor", diretor);
+        //editContact.put("votofilme", filme);
+        //editContact.put("votodiretor", diretor);
 
         open();
         database.update("usuario",editContact,"usuario= " + usuario,null);
@@ -103,8 +103,8 @@ public class DbConnector {
                     + "(usuario integer primary key,"
                     + "nome TEXT,"
                     + "senha TEXT,"
-                    + "voto_filme TEXT,"
-                    + "voto_diretor TEXT,"
+                    + "votofilme TEXT,"
+                    + "votodiretor TEXT,"
                     + "votou integer);";
             db.execSQL(createQuery);
             db.execSQL("insert into usuario values (111,'Amanda','s',null,null,0)");
