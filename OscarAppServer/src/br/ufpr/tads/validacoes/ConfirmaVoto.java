@@ -47,25 +47,24 @@ public class ConfirmaVoto extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HashMap<String, String> hm = new HashMap<String, String>();
-		String login = request.getParameter("login");//login aqui é o nome: Amanda, Flavio ou Fernando...
-		String password = request.getParameter("senha");
+		String nome = request.getParameter("nome");
+		String filme = request.getParameter("filme");
+		String diretor = request.getParameter("diretor");
 		String msg;
 		
-		Login loginBD = new Login();
-		loginBD.setNome(login);
-		loginBD.setSenha(password);
+		Login confirmaVotoBD = new Login();
+		confirmaVotoBD.setNome(nome);
+		confirmaVotoBD.setFilme(filme);
+		confirmaVotoBD.setDiretor(diretor);
 
-		
-		/*=======================================================*/
-		
 		UserDao userdao;
 		userdao = new UserDao();
 		try {
-			Login feito = userdao.getLogin(loginBD);//vai mandar o usario e senha se encontrar devolve os mesmos...
-			if(feito.getNome().equals(login) && feito.getSenha().equals(password)){
-				msg = "Login correto";
+			Login confirmado = userdao.confirmaVoto(confirmaVotoBD);
+			if(confirmado.getVotou() == 1){
+				msg = "Voto confirmado";
 			}else{
-				msg = "Login errado";
+				msg = "Erro ao confirmar voto";
 			}
 			hm.put("message", msg);
 			//Cada chave do HashMap vira uma chave do JSON
