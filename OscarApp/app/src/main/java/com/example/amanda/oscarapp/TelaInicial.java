@@ -59,9 +59,11 @@ public class TelaInicial extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
 
-        if(item.getTitle().equals("Sair")) {
-            //intent = new Intent(Intent.ACTION_MAIN);
-            finish();
+         if(item.getTitle().equals("Sair")) {
+            intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.putExtra("SAIR", true);
+            startActivity(intent);
         } else if (usuario.getVotou()==1){
             Toast.makeText(TelaInicial.this,"Não é possível votar novamente.",Toast.LENGTH_SHORT).show();
         }

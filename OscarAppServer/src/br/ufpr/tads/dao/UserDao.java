@@ -27,11 +27,17 @@ public class UserDao {
             stmt = (PreparedStatement) con.prepareStatement(stmtGetLogin);
             stmt.setString(1, login.getNome());
             rs = stmt.executeQuery();
-            rs.next();
-            if ((login.getSenha().equals(rs.getString("senha"))) && (login.getNome().equals(rs.getString("nome")))){
-                feito.setNome(rs.getString("nome"));
-                feito.setSenha(rs.getString("senha"));
+            while(rs.next()){
+	            if ((login.getSenha().equals(rs.getString("senha"))) && (login.getNome().equals(rs.getString("nome")))){
+	                feito.setNome(rs.getString("nome"));
+	                feito.setSenha(rs.getString("senha"));
+
+	            }
+	            return feito;//se houver o usuario e senha na DB retorna os mesmos...
             }
+            //Caso nao exista o usuario e senha na DB setamos um retorno dizendo "Inexistente"
+            feito.setNome("Inexistente");
+            feito.setSenha("Inexistente");
             return feito;
         } catch (SQLException ex) {
             throw new RuntimeException("Erro ao consultar cadastro de usuario. Origem="+ex.getMessage());

@@ -94,6 +94,14 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
     protected void onStart() {
         super.onStart();
     }
+	
+	@Override
+    protected void onResume(){
+        if(getIntent().getBooleanExtra("SAIR", false)){
+            finish();
+        }
+        super.onResume();
+    }
 
     @Override
     protected void onStop(){
