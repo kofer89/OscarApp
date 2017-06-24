@@ -91,10 +91,17 @@ public class ConfirmarVoto extends AppCompatActivity implements Response.Listene
         final Response.Listener<JSONObject> list=this;
         final Response.ErrorListener errorListener =this;
 
+
+
         if (usuario.getVotou()!=1){
+            /*DbConnector db = new DbConnector(ConfirmarVoto.this);
+            db.open();
+            db.confirmarVoto(usuario.getUsuario(), usuario.getFilme(), usuario.getDiretor());
+            Toast.makeText(ConfirmarVoto.this, "Voto registrado localmente!", Toast.LENGTH_LONG).show();
+            usuario.setVotou(1);*/
 
             String url = "http://192.168.25.121:8090/OscarAppServer/ConfirmaVoto?nome=" + usuario.getNome() +
-                    "&filme=" + filme + "&diretor=" + diretor;
+                    "&filme=" + filme.getNome() + "&diretor=" + diretor.getNome();
 
             final CustomJSONObjectRequest jsonRequest = new CustomJSONObjectRequest(Request.Method.POST, url, new JSONObject(),
                     list, errorListener);
@@ -128,8 +135,11 @@ public class ConfirmarVoto extends AppCompatActivity implements Response.Listene
         pDialog.dismiss();
         try{
             if ( (((JSONObject) response).getString("message")).equals("Voto confirmado")){
+                Toast.makeText(this,"Voto confirmado com sucesso...",Toast.LENGTH_LONG).show();
                 intent = new Intent(ConfirmarVoto.this,TelaInicial.class);
                 startActivity(intent);
+            }else if((((JSONObject) response).getString("message")).equals("Usuario ja votou")){
+                Toast.makeText(this,"Você ja votou, não pode mais...",Toast.LENGTH_LONG).show();
             }else
                 Toast.makeText(this,"Falha ao registrar voto.",Toast.LENGTH_LONG).show();
         } catch (JSONException e){

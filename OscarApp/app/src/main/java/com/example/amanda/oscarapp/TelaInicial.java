@@ -34,9 +34,9 @@ public class TelaInicial extends AppCompatActivity {
 
                 usuario = (Usuario) bundle.getSerializable("usuario");
                 if (bundle.getSerializable("filme") != null)
-                    this.filme = (Candidato) bundle.getSerializable("filme");
+                    filme = (Candidato) bundle.getSerializable("filme");
                 if (bundle.getSerializable("diretor") != null)
-                    this.diretor = (Diretor) bundle.getSerializable("diretor");
+                    diretor = (Diretor) bundle.getSerializable("diretor");
 
                 if (usuario !=null){
                     tvBoasVindas.setText("Bem-vindo(a) "+ usuario.getNome());
@@ -59,11 +59,13 @@ public class TelaInicial extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
 
-        if (usuario.getVotou()==1){
+        if(item.getTitle().equals("Sair")) {
+            //intent = new Intent(Intent.ACTION_MAIN);
+            finish();
+        } else if (usuario.getVotou()==1){
             Toast.makeText(TelaInicial.this,"Não é possível votar novamente.",Toast.LENGTH_SHORT).show();
         }
         else{
-
             if (item.getTitle().equals("Confirmar Voto")){
 
                 if (filme == null || diretor == null){
@@ -81,15 +83,15 @@ public class TelaInicial extends AppCompatActivity {
                 intent = new Intent(TelaInicial.this, VotacaoFilme.class);
                 intent.putExtra("usuario",usuario);
                 intent.putExtra("filme",filme);
-                intent.putExtra("diretor", this.diretor);
+                intent.putExtra("diretor", diretor);
                 intent.putExtra("menuClicado",item.getTitle());
                 startActivity(intent);
             }
-            else {
+            else if(item.getTitle().equals("Votar Diretor")) {
                 intent = new Intent(TelaInicial.this, VotacaoDiretor.class);
                 intent.putExtra("usuario",usuario);
                 intent.putExtra("diretor",diretor);
-                intent.putExtra("filme", this.filme);
+                intent.putExtra("filme", filme);
                 intent.putExtra("menuClicado",item.getTitle());
                 startActivity(intent);
             }

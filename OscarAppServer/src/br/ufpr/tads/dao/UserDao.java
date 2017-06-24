@@ -15,6 +15,7 @@ public class UserDao {
 	
 	private final String stmtGetLogin = "SELECT * FROM usuario WHERE nome=?";
 	private final String stmtConfirmaVotoBD = "UPDATE usuario SET filme=?, diretor=?, votou=? WHERE nome=?";
+	private final String stmtCheckVoto = "SELECT votou FROM usuario WHERE nome=?";
 	
 	public Login getLogin(Login login) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
         Connection con = null;
@@ -69,6 +70,31 @@ public class UserDao {
         }
         
         
+	}
+
+	public int checkVoto(Login login) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
+		Connection con = null;
+        PreparedStatement stmt = null;
+        int checkVoto;
+        ResultSet rs = null;
+        
+        try {
+            con = new ConnectionFactory().getConnection();
+            con.setAutoCommit(false);
+            stmt = con.prepareStatement(stmtCheckVoto, PreparedStatement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, login.getNome());
+            rs = stmt.executeQuery();
+            rs.next();
+            checkVoto = rs.getInt("votou");
+            return checkVoto;
+            
+        }catch (SQLException ex) {
+            try{con.rollback();}catch(SQLException ex1){ex1.printStackTrace();  System.out.println("Erro ao tentar rollback. Ex="+ex1.getMessage());};
+            throw new RuntimeException("Erro ao confirmar voto no banco de dados. Origem="+ex.getMessage());
+        } finally{
+            try{stmt.close();}catch(Exception ex){ex.printStackTrace();  System.out.println("Erro ao fechar stmt. Ex="+ex.getMessage());};
+            try{con.close();;}catch(Exception ex){ex.printStackTrace();  System.out.println("Erro ao fechar conexão. Ex="+ex.getMessage());};
+        }
 	}
 	
 }

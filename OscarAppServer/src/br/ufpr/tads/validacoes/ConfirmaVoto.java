@@ -60,11 +60,17 @@ public class ConfirmaVoto extends HttpServlet {
 		UserDao userdao;
 		userdao = new UserDao();
 		try {
-			Login confirmado = userdao.confirmaVoto(confirmaVotoBD);
-			if(confirmado.getVotou() == 1){
-				msg = "Voto confirmado";
+			int checkVoto = userdao.checkVoto(confirmaVotoBD);
+			if(checkVoto == 1){
+				msg = "Usuario ja votou";
 			}else{
+				Login confirmado = userdao.confirmaVoto(confirmaVotoBD);
+			
+				if(confirmado.getVotou() == 1){
+				msg = "Voto confirmado";
+				}else{
 				msg = "Erro ao confirmar voto";
+				}
 			}
 			hm.put("message", msg);
 			//Cada chave do HashMap vira uma chave do JSON

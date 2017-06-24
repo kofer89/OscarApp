@@ -56,18 +56,16 @@ public class DbConnector {
     public void confirmarVoto(int usuario, String filme, String diretor){
         ContentValues editContact = new ContentValues();
         editContact.put("votou",1);
-        //editContact.put("votofilme", filme);
-        //editContact.put("votodiretor", diretor);
+        editContact.put("votofilme", filme);
+        editContact.put("votodiretor", diretor);
 
         open();
-        database.update("usuario",editContact,"usuario= " + usuario,null);
+        database.update("usuario ",editContact," usuario=" + usuario,null);
         close();
     } //fim updateContact
 
-    // obtem cursor com info sobre um determinado contato
-    public Usuario autenticaLogin(int usuario, String senha){
-        Cursor result = database.query("Usuario", new String[]{"*,count(*)"},"usuario="+usuario+" and senha='"+senha+"'",null,null,null,
-                null);
+    public Usuario autenticaLogin(String nome, String senha){
+        Cursor result = database.query("Usuario", new String[]{"*,count(*)"},"nome='"+nome+"' and senha='"+senha+"'",null,null,null,null);
         result.moveToFirst();
         Usuario usuario1 = new Usuario(
                 result.getString(result.getColumnIndex("nome")),
@@ -99,6 +97,7 @@ public class DbConnector {
 
         @Override
         public void onCreate(SQLiteDatabase db){
+            db.execSQL("DROP TABLE IF EXISTS Usuario");
             String createQuery = "CREATE TABLE " + "Usuario"
                     + "(usuario integer primary key,"
                     + "nome TEXT,"
