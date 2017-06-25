@@ -48,16 +48,23 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
 
         usuarioTxt = etUsuario.getText().toString();
         senha = etSenha.getText().toString();
-        String url = "http://192.168.25.121:8090/OscarAppServer/UserValidator?login=" + usuarioTxt + "&senha=" + senha;
+        if(usuarioTxt.isEmpty()){
+            Toast.makeText(this,"Usuário em branco!",Toast.LENGTH_LONG).show();
+        }else if(senha.isEmpty()){
+            Toast.makeText(this,"Senha em branco!",Toast.LENGTH_LONG).show();
+        }else {
+            String url = "http://10.0.2.2:8090/OscarAppServer/UserValidator?login=" + usuarioTxt + "&senha=" + senha;
+            //String url = "http://192.168.25.121:8090/OscarAppServer/UserValidator?login=" + usuarioTxt + "&senha=" + senha;
 
-        final CustomJSONObjectRequest jsonRequest = new CustomJSONObjectRequest(Request.Method.POST, url, new JSONObject(), list, errorListener);
-        jsonRequest.setTag(REQUEST_TAG);
+            final CustomJSONObjectRequest jsonRequest = new CustomJSONObjectRequest(Request.Method.POST, url, new JSONObject(), list, errorListener);
+            jsonRequest.setTag(REQUEST_TAG);
 
-        mQueue.add(jsonRequest);
-        pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Login em progresso...");
-        pDialog.setCanceledOnTouchOutside(false);
-        pDialog.show();
+            mQueue.add(jsonRequest);
+            pDialog = new ProgressDialog(this);
+            pDialog.setMessage("Login em progresso...");
+            pDialog.setCanceledOnTouchOutside(false);
+            pDialog.show();
+        }
     }
 
     @Override
@@ -94,8 +101,8 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
     protected void onStart() {
         super.onStart();
     }
-	
-	@Override
+
+    @Override
     protected void onResume(){
         if(getIntent().getBooleanExtra("SAIR", false)){
             finish();

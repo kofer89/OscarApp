@@ -1,5 +1,9 @@
 package com.example.amanda.oscarapp;
 
+/**
+ * Created by Fernando Koarata on 19/06/2017.
+ */
+
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,7 +47,7 @@ public class ConfirmarVoto extends AppCompatActivity implements Response.Listene
         tvNomeFilme = (TextView) findViewById(R.id.textViewNomeFilme);
         tvNomeDiretor = (TextView) findViewById(R.id.textViewNomeDiretor);
         tvGeneroFilme = (TextView) findViewById(R.id.textViewGeneroFilme);
-        tvGeneroDiretor = (TextView) findViewById(R.id.textViewGeneroDiretor);
+
 
         fotoFilme = (ImageView) findViewById(R.id.imageViewFilme);
 
@@ -64,7 +68,7 @@ public class ConfirmarVoto extends AppCompatActivity implements Response.Listene
         tvNomeFilme.setText(filme.getNome());
         tvNomeDiretor.setText(diretor.getNome());
         tvGeneroFilme.setText(filme.getGenero());
-        tvGeneroDiretor.setText(diretor.getNome());
+        //tvGeneroDiretor.setText(diretor.getNome());
 
         try {
             fotoFilme.setImageBitmap(new AuxiliarImg().baixarImagem(filme.getLinkFoto()));
@@ -100,7 +104,8 @@ public class ConfirmarVoto extends AppCompatActivity implements Response.Listene
             Toast.makeText(ConfirmarVoto.this, "Voto registrado localmente!", Toast.LENGTH_LONG).show();
             usuario.setVotou(1);*/
 
-            String url = "http://192.168.25.121:8090/OscarAppServer/ConfirmaVoto?nome=" + usuario.getNome() +
+
+            String url = "http://10.0.2.2:8090/OscarAppServer/ConfirmaVoto?nome=" + usuario.getNome() +
                     "&filme=" + filme.getNome() + "&diretor=" + diretor.getNome();
 
             final CustomJSONObjectRequest jsonRequest = new CustomJSONObjectRequest(Request.Method.POST, url, new JSONObject(),
@@ -136,7 +141,7 @@ public class ConfirmarVoto extends AppCompatActivity implements Response.Listene
         try{
             if ( (((JSONObject) response).getString("message")).equals("Voto confirmado")){
                 Toast.makeText(this,"Voto confirmado com sucesso...",Toast.LENGTH_LONG).show();
-                intent = new Intent(ConfirmarVoto.this,TelaInicial.class);
+                intent = new Intent(ConfirmarVoto.this,FinalActivity.class);
                 startActivity(intent);
             }else if((((JSONObject) response).getString("message")).equals("Usuario ja votou")){
                 Toast.makeText(this,"Você ja votou, não pode mais...",Toast.LENGTH_LONG).show();
